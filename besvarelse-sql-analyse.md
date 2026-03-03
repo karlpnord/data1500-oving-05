@@ -6,27 +6,27 @@
 3.  `SELECT DISTINCT KatNr FROM Vare;`
 4.  `SELECT Fornavn, Etternavn, Stilling AS Jobbtittel FROM Ansatt;`
 
-1.  **Forklaring:** ...
+1.  **Forklaring:** Velger alt fra tabellen Vare.
 
-2.  **Forklaring:** ...
+2.  **Forklaring:** Velger ut attributtene VNr og Betegnelse fra tabellen Vare.
 
-3.  **Forklaring:** ...
+3.  **Forklaring:** Velger ut KatNr attributtet fra tabellen Vare. Duplikate verdier blir fjernet pga DISTINCT.
 
-4.  **Forklaring:** ...
+4.  **Forklaring:** Velger ut Fornavn, Etternavn og Stilling omdøpt til JobbTittel fra tabellen Ansatt.
 
 ## Oppgave 2: WHERE-klausulen
 1.  `SELECT * FROM Vare WHERE Pris > 500;`
 2.  `SELECT * FROM Ansatt WHERE Stilling = 'Salgssjef' AND Årslønn > 600000;`
 3.  `SELECT Fornavn, Etternavn FROM Kunde WHERE PostNr = '0001' OR PostNr = '0002';`
-4.  `SELECT Betegnelse FROM Vare WHERE NOT KatNr = 1;
+4.  `SELECT Betegnelse FROM Vare WHERE NOT KatNr = 1;`
 
-1.  **Forklaring:** ...
+1.  **Forklaring:** Velger all data fra tabellen Vare, men bare de varene som har Pris > 500.
 
-2.  **Forklaring:** ...
+2.  **Forklaring:** Velger all data fra tabellen Ansatt, men viser bare de ansatte som har stilling 'Salgssjef' og Årslønn > 600000.
 
-3.  **Forklaring:** ...
+3.  **Forklaring:** Velger Fornavn og Etternavn fra tabellen Kunde, men viser bare info om de kundene som har PostNr 0001 eller 0002.
 
-4.  **Forklaring:** ...
+4.  **Forklaring:** Velger attributtet Betegnelse fra tabellen Vare, men viser bare betegnelsen på de varene som ikke har KatNr = 1.
 
 ## Oppgave 3: Gruppering og Sortering
 1.  `SELECT * FROM Vare ORDER BY Pris DESC;`
