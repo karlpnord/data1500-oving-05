@@ -34,13 +34,13 @@
 3.  `SELECT Stilling, AVG(Årslønn) FROM Ansatt GROUP BY Stilling;`
 4.  `SELECT KatNr, SUM(Antall) FROM Vare GROUP BY KatNr HAVING SUM(Antall) > 500;`
 
-1.  **Forklaring:** ...
+1.  **Forklaring:** Velger ut alle varer og sorterer etter pris (høyest pris til lavest pris).
 
-2.  **Forklaring:** ...
+2.  **Forklaring:** Velger ut varer og grupperer de etter KatNr og teller antall varer per KatNr.
 
-3.  **Forklaring:** ...
+3.  **Forklaring:** Velger ut Ansatt tabellen og grupperer etter Stilling. Dermed regner vi ut gjennomsnitt årslønn per Stilling.
 
-4.  **Forklaring:** ...
+4.  **Forklaring:** Velger ut Vare tabell og teller antall varer per KatNr. Så grupperer vi etter KatNr og viser bare de kategoriene som totalt har mer enn 500 antall varer.
 
 ## Oppgave 4: Spørringer mot Flere Tabeller
 1.  `SELECT V.Betegnelse, K.Navn FROM Vare V JOIN Kategori K ON V.KatNr = K.KatNr;`
@@ -48,13 +48,13 @@
 3.  `SELECT A1.Fornavn, A2.Fornavn FROM Ansatt A1, Ansatt A2 WHERE A1.PostNr = A2.PostNr AND A1.AnsNr < A2.AnsNr;`
 4.  `SELECT V.Betegnelse FROM Vare V WHERE V.VNr NOT IN (SELECT VNr FROM Ordrelinje);`
 
-1.  **Forklaring:** ...
+1.  **Forklaring:** Vi kobler hver Vare til riktig Kategori ved hjelp av FK Vare.KatNr som referer til Kategori.KatNr og viser Vare Betegnelse og Kategori.
 
-2.  **Forklaring:** ...
+2.  **Forklaring:** Vi kobler Ordre og Kunder med FK O.KNr. LEFT JOIN gjør at alle ordre vises i resultatet selv om de eventuelt ikke har en tilhørende kunde (Hvis det ikke hadde vært en tilhørende kunde til ordren ville det stått NULL). Og vi selekterer ut fornavn, etternavn i tillegg til resultattabellen.
 
-3.  **Forklaring:** ...
+3.  **Forklaring:** Vi kobler Ansatt tabellen med seg selv (SELF JOIN), for å finne ansatte som har samme postnummer. Vi sjekker også at en ansatt ikke blir sammenlignet med seg selv og at hvert par som har likt postnummer bare vises en gang.
 
-4.  **Forklaring:** ...
+4.  **Forklaring:** Vi har tabellen Vare og sjekker om VNr (vareid) finnes i tabellen Ordrelinje. Så kort forklart spørringen viser varer som ikke har blitt bestilt.
 
 ## Oppgave 5: NULL-verdier og Aggregeringsfunksjoner
 
