@@ -93,3 +93,41 @@ ORDER BY AntallSolgteEnheter DESC;
 SELECT A.Fornavn, A.Etternavn, P.Poststed FROM Ansatt A
 JOIN Poststed P ON A.PostNr = P.PostNr
 WHERE P.Poststed = 'BØ I TELEMARK';
+
+
+-- ### Oppgave 5: NULL-verdier og Aggregeringsfunksjoner
+
+-- 1.  Finn antall ansatte som **ikke** har fått bonus.
+SELECT COUNT(*) FROM Ansatt WHERE Bonus IS NULL;
+
+-- 2.  Beregn gjennomsnittlig bonus for alle ansatte, men behandle de som ikke har fått bonus som om de har 0 i bonus.
+SELECT AVG(COALESCE(Bonus, 0)) AS GjennomsnittsBonus FROM Ansatt;
+
+-- 3.  List opp alle kunder som **ikke** har registrert et telefonnummer.
+SELECT Fornavn, Etternavn FROM Kunde WHERE Telefon IS NULL;
+
+-- 4.  Finn den totale lønnskostnaden (Årslønn + Bonus) for alle ansatte. Pass på at ansatte uten bonus også blir med i den totale summen.
+SELECT SUM(Årslønn + COALESCE(Bonus, 0)) AS TotalLønnskostnad FROM Ansatt;
+
+-- 5.  List opp alle stillinger og antall ansatte i hver stilling som har en bonus registrert.
+SELECT Stilling, COUNT(Bonus) AS AntallMedBonus FROM Ansatt
+GROUP BY Stilling HAVING COUNT(Bonus) IS NOT NULL;
+
+-- 6.  Finn den laveste bonusen som er gitt ut (ignorer de som ikke har fått bonus).
+SELECT MIN(Bonus) FROM Ansatt;
+
+
+-- ### Oppgave 6: Tre-verdi Logikk (TRUE, FALSE, UNKNOWN)
+
+-- Skriv SQL-spørringer for å hente ut følgende informasjon.
+
+-- 1.  Finn alle ordrer som **verken** er bekreftet betalt eller bekreftet ikke-betalt (dvs. de hvor logikken er `UNKNOWN`).
+SELECT * FROM Ordre WHERE ErBetalt IS UNKNOWN;
+-- 2.  List opp alle ansatte som har en bonus som er enten `NULL` eller mindre enn 6000.
+SELECT * FROM Ansatt WHERE Bonus IS NULL OR Bonus < 6000;
+
+-- 3.  Finn antall kunder som **ikke** har telefonnummer `41234567` (pass på å inkludere de med `NULL` telefonnummer i tellingen).
+SELECT COUNT(*) AS Antall FROM Kunde WHERE Telefon != '41234567' OR Telefon IS NULL;
+
+-- 4.  List opp alle ordrer som er betalt (`ErBetalt = TRUE`), men hvor `SendtDato` er `NULL`.
+SELECT * FROM Ordre WHERE ErBetalt = True AND SendtDato IS NULL;
